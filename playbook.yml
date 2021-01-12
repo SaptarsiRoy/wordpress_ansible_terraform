@@ -77,6 +77,11 @@
           owner: apache
           group: apache
 
+    - name: Copy index.html file
+      copy: 
+        src: index.html
+        dest: /var/www/html
+        
     - name: Start httpd services
       service:
         name: httpd
