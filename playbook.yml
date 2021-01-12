@@ -54,7 +54,7 @@
     
     - name: Unarchive files
       unarchive:
-          src: wordpress-5.6.tar.gz
+          src: /wordpress_download/wordpress-5.6.tar.gz
           dest: /var/www/html
           owner: apache
           group: apache
