@@ -65,11 +65,6 @@
           setype: httpd_sys_rw_content_t
           state: present
 
-    - name: Remove sample configuration file
-      file:
-          path: /var/www/html/wordpress/wp-config-sample.php
-          state: absent
-    
     - name: Copy configuration file
       template:
           src: wp-config.php.j2
