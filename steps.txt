@@ -1,8 +1,7 @@
 Step 1: Setup wordpress manually
-Step 2: Write ansible playbook to setup wordpress
+Step 2: Write ansible playbook to setup wordpress 
 Step 3: Create index.html file to redirect webpage
 Step 4: Write terraform script to launch ec2-instance and retrive the ip
 Step 5: Write terraform script to launch RDS instance and retrive the endpoint
 Step 6: Create dynamic inventory for ansible configuration
-Step 7: Copy wp-config.php file using template module
-Step 8: Integrate terraform with ansible
+Step 7: Integrate terraform with ansible
