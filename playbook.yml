@@ -65,10 +65,15 @@
           setype: httpd_sys_rw_content_t
           state: present
 
+    - name: Delete sample configuration file
+      file:
+          path: /var/www/html/wordpress/wp-config-sample.php 
+          state: absent
+
     - name: Copy configuration file
       template:
           src: wp-config.php.j2
-          dest: /var/www/html/wordpress/
+          dest: /var/www/html/wordpress/wp-config.php
           owner: apache
           group: apache
 
