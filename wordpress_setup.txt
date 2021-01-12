@@ -1,0 +1,43 @@
+Install apache webserver
+------------------------
+yum install -y httpd
+systemctl start httpd
+systemctl enable httpd
+
+Install php:7.4
+---------------
+yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+yum install -y https://rpms.remirepo.net/enterprise/remi-release-8.rpm
+yum module install -y php:remi-7.4
+
+Install MySQl and its libraries
+-------------------------------
+yum install -y php-mysqlnd
+yum install -y mysql
+
+Install WordPress
+-----------------
+wget https://wordpress.org/latest.tar.gz
+tar xf wordpress.tar.gz
+
+Configurations
+--------------
+firewall-cmd --permanent --zone=public --add-service=http 
+firewall-cmd --permanent --zone=public --add-service=https
+firewall-cmd --reload
+mv wordpress /var/www/html
+chown -R apache:apache /var/www/html/wordpress
+chcon -t httpd_sys_rw_content_t /var/www/html/wordpress -R
+
+php:remi-7.4
+
+libxslt
+php-cli
+php-common
+php-json
+php-xml
+php-fmp
+php-mbstring
+oniguruma5php
+httpd-filesystem
+nginx-filesystem
