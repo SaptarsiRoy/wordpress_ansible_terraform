@@ -28,7 +28,7 @@
               - php-common
               - php-json
               - php-xml
-              - php-fmp
+              - php-fpm
               - php-mbstring
               - oniguruma5php
               - httpd-filesystem
