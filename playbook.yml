@@ -1,6 +1,8 @@
 ---
 - name: Install Wordpress
   hosts: localhost
+  vars_files:
+    - vars.yml
   tasks:
     - name: Install apache webserver
       yum: 
