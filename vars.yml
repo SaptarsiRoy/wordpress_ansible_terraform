@@ -1,0 +1,4 @@
+db_name: "wpdb"
+db_user: "admin"
+db_password: "password"
+db_endpoint: "terraform-20210111195940582400000001.cxsletslx6ph.ap-south-1.rds.amazonaws.com"
