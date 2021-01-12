@@ -1,0 +1,76 @@
+---
+- name: Install Wordpress
+  hosts: localhost
+  tasks:
+    - name: Install apache webserver
+      yum: 
+          name: httpd
+          state: latest
+
+    - name: Install epel-release
+      yum:
+          name: https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+          state: present
+    
+    - name: Install remi repository
+      yum:
+          name: https://rpms.remirepo.net/enterprise/remi-release-8.rpm
+          disable_gpg_check: yes
+          state: present
+    
+    - name: Install php remi packages
+      yum:
+          name:
+              - libxslt
+              - php-cli
+              - php-common
+              - php-json
+              - php-xml
+              - php-fmp
+              - php-mbstring
+              - oniguruma5php
+              - httpd-filesystem
+              - nginx-filesystem
+          state: present
+
+    - name: Install php mysql packages
+      yum:
+        name: 
+            - php-mysqlnd
+            - mysql
+        state: present
+    
+    - name: Create temporary folder
+      file:
+          path: /wordpress_download
+          state: directory
+    
+    - name: Download wordpress file
+      get_url:
+          url: https://wordpress.org/latest.tar.gz
+          dest: /wordpress_download
+    
+    - name: Unarchive files
+      unarchive:
+          src: wordpress-5.6.tar.gz
+          dest: /var/www/html
+          owner: apache
+          group: apache
+
+    - name: Add selinux permission
+      sefcontext:
+          target: /var/www/html/wordpress
+          setype: httpd_sys_rw_content_t
+          state: present
+
+    - name: Remove sample configuration file
+      file:
+          path: /var/www/html/wordpress/wp-config-sample.php
+          state: absent
+    
+    - name: Copy configuration file
+      template:
+          src: wp-config.php.j2
+          dest: /var/www/html/wordpress/
+          owner: apache
+          group: apache
