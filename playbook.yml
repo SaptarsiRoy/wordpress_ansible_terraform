@@ -76,3 +76,9 @@
           dest: /var/www/html/wordpress/
           owner: apache
           group: apache
+
+    - name: Start httpd services
+      service:
+        name: httpd
+        state: started
+        enabled: yes
