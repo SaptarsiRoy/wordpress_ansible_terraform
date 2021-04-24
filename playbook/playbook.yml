@@ -1,6 +1,6 @@
 ---
 - name: Install Wordpress
-  hosts: localhost
+  hosts: tag_Name_wordpress
   vars_files:
     - vars.yml
   tasks:
